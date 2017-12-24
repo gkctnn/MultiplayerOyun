@@ -18,9 +18,17 @@ public class Mermi : MonoBehaviour {
     {
         GameObject vurulanObje = col.gameObject;
         Saglik saglik = vurulanObje.GetComponent<Saglik>();
+        
+        DusmanSaglik saglikDusman = vurulanObje.GetComponent<DusmanSaglik>();
         if (saglik != null)
         {
             saglik.HasarAl(5);
+           
+
+        }
+        if (saglikDusman != null)
+        {
+            saglikDusman.HasarAl(5);
         }
         Destroy(gameObject);
     }

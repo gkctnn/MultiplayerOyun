@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scriptler\Diken.cs" />
+     <Compile Include="Assets\Scriptler\DusmanSaglik.cs" />
      <Compile Include="Assets\Scriptler\DusmanUzak.cs" />
      <Compile Include="Assets\Scriptler\KameraTakip2.cs" />
      <Compile Include="Assets\Scriptler\KamerayaBak.cs" />

@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class DusmanUzak : MonoBehaviour
 {
-    public int saglik;
-    public int maxSaglik;
+    private int saglik =5;
     public float mesafe;
-    public float hazirlanmaMesafesi;
-    public float atesEtmeMesafesi;
-    public float mermiHizi, mermiZamanlayicisi;
+    private float hazirlanmaMesafesi = 6;
+   
+    private float mermiHizi = 20;
+    private float mermiZamanlayicisi = 0.2f;
     public bool hazir = false;
-
-    public Animator anim;
+    private Animator anim;
     public Transform hedef;
     public GameObject mermi;
-    public Transform namluSol, namluSag, namluArka, namluOn;
-    //public float mermiSikligi;
+    public Transform namluSag;
+    public float mermiSikligi;
     void Awake()
     {
         anim = gameObject.GetComponent<Animator>();
@@ -24,7 +23,7 @@ public class DusmanUzak : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        saglik = maxSaglik;
+      
     }
 
     // Update is called once per frame
@@ -40,6 +39,18 @@ public class DusmanUzak : MonoBehaviour
         if (mesafe < hazirlanmaMesafesi)
         {
             hazir = true;
+            mermiZamanlayicisi += Time.deltaTime;
+            if (mermiZamanlayicisi >= mermiSikligi)
+            {
+                Vector3 mermiYonu = hedef.transform.position - transform.position;
+                mermiYonu.Normalize();
+
+                GameObject mermiKopyasi;
+                mermiKopyasi = Instantiate(mermi, namluSag.transform.position, namluSag.transform.rotation);
+                mermiKopyasi.GetComponent<Rigidbody>().velocity = mermiYonu * mermiHizi;
+                mermiZamanlayicisi = 0;
+
+            }
         }
         else
         {
@@ -47,27 +58,5 @@ public class DusmanUzak : MonoBehaviour
         }
     }
 
-    //public void AtesEt(bool sagaAtesEt)
-    //{
-    //    mermiZamanlayicisi += Time.deltaTime;
-    //    if (mermiZamanlayicisi >= mermiSikligi)
-    //    {
-    //        Vector2 mermiYonu = hedef.transform.position - transform.position;
-    //        mermiYonu.Normalize();
-    //        if (sagaAtesEt == true)
-    //        {
-    //            GameObject mermiKopyasi;
-    //            mermiKopyasi = Instantiate(mermi, namluSag.transform.position, namluSag.transform.rotation);
-    //            mermiKopyasi.GetComponent<Rigidbody2D>().velocity = mermiYonu * mermiHizi;
-    //            mermiZamanlayicisi = 0;
-    //        }
-    //        if (sagaAtesEt == false)
-    //        {
-    //            GameObject mermiKopyasi;
-    //            mermiKopyasi = Instantiate(mermi, namluSol.transform.position, namluSol.transform.rotation);
-    //            mermiKopyasi.GetComponent<Rigidbody2D>().velocity = mermiYonu * mermiHizi;
-    //            mermiZamanlayicisi = 0;
-    //        }
-    //    }
-    //}
+
 }

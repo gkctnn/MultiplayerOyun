@@ -26,11 +26,11 @@ public class KameraTakip2 : MonoBehaviour {
 
         targetHeight = targetCenter.y + height;
 
-        if (Input.GetButton("Fire2") && !isSnapping)
-        {
-            velocity = Vector3.zero;
-            isSnapping = true;
-        }
+        //if (Input.GetButton("Fire2") && !isSnapping)
+        //{
+        //    velocity = Vector3.zero;
+        //    isSnapping = true;
+        //}
         if (isSnapping)
         {
             ApplySnapping(targetCenter);
