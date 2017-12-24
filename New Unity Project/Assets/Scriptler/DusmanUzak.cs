@@ -12,13 +12,14 @@ public class DusmanUzak : MonoBehaviour
     public float mermiHizi, mermiZamanlayicisi;
     public bool hazir = false;
 
+    public Animator anim;
     public Transform hedef;
     public GameObject mermi;
-    public Transform namluSol, namluSag;
-    public float mermiSikligi;
+    public Transform namluSol, namluSag, namluArka, namluOn;
+    //public float mermiSikligi;
     void Awake()
     {
-       
+        anim = gameObject.GetComponent<Animator>();
     }
     // Use this for initialization
     void Start()
@@ -29,6 +30,7 @@ public class DusmanUzak : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        anim.SetBool("Hazir", hazir);
         MesafeHesapla();
     }
 
